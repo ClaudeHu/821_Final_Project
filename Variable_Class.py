@@ -10,21 +10,21 @@ class Variable:
         self.values = values
 
     @property
-    def type(self):
+    def get_type(self):
         """Variable type."""
         return self._type
 
-    @type.setter
-    def type(self, var_type: str):
+    # @type.setter
+    def set_type(self, var_type: str):
         """Setter for variable type."""
         self._type = var_type
 
     @property
-    def x_or_y(self):
+    def get_x_or_y(self):
         """Variable classification as x or y."""
         return self._x_or_y
 
-    @x_or_y.setter
-    def x_or_y(self, x_or_y_type: str):
+    # @x_or_y.setter
+    def set_x_or_y(self, x_or_y_type: str):
         """Setter for variable classification."""
         self._x_or_y = x_or_y_type
