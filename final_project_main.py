@@ -18,6 +18,8 @@ import sys
 from Variable_Class import Variable
 import pandas as pd
 import time
+from collections import defaultdict
+from csv import DictReader
 
 
 # set the GUI box of the entry page (select the datafile)
@@ -84,18 +86,20 @@ if next_page.get() is False:
 next_page.set(False)
 
 # read the variable names
-with open(csv_name) as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=",")
-
-    list_of_column_names = []
-
+values_dict: dict = defaultdict(list)
+with open(csv_name, "rU") as csv_file:
+    csv_reader = DictReader(csv_file)
     for row in csv_reader:
-        list_of_column_names.append(row)
-        break
-
+        for col, dat in row.items():
+            values_dict[col].append(dat)
 
 # list of variables
-data_columns = list_of_column_names[0]
+data_columns = list(values_dict.keys())
+
+# create variable dictionary
+variable_dict = dict()
+for variable in data_columns:
+    variable_dict[variable] = Variable(variable, values_dict[variable])
 
 
 def Close_P2():
@@ -151,6 +155,7 @@ next_page.set(False)
 
 # set the name of outcome (y)
 Y.set(data_columns[y_selection.get()])
+variable_dict[data_columns[y_selection.get()]].set_x_or_y("y")
 
 
 # page 3: select the type of y:
@@ -172,6 +177,7 @@ ytype_selection.set(0)
 
 
 def Close_P3():
+    """Close P3."""
     next_page.set(True)
     page3.destroy()
 
@@ -190,9 +196,9 @@ for i in range(len(var_types)):
     variable_type = var_types[i]
     select_var = tk.IntVar()
 
-    tk.Radiobutton(page3, text=variable_type, variable=ytype_selection, value=i).grid(
-        row=placement, column=10, sticky="w"
-    )
+    tk.Radiobutton(
+        page3, text=variable_type, variable=ytype_selection, value=i
+    ).grid(row=placement, column=10, sticky="w")
     placement += 10
 
 
@@ -206,6 +212,9 @@ next_page.set(False)
 
 
 Y_type.set(var_types[ytype_selection.get()])
+variable_dict[data_columns[y_selection.get()]].set_type(
+    var_types[ytype_selection.get()]
+)
 
 
 # the predictors
@@ -231,9 +240,9 @@ page5_button = tk.Button(
 
 page5_button.place(relx=0.99, rely=0.97, anchor="se")
 
-selected_X = []  # store the variables of each predictor (selected or not)
-X_types = []  # store the variable of each predictor's type
-X_type_buttons = []  # store the buttons that selects the type of each variable
+selected_X: list = []  # store the variables of each predictor
+X_types: list = []  # store the variable of each predictor's type
+X_type_buttons: list = []  # store the buttons that selects the types
 
 
 # the button that selected the type of one variable will be disabled
@@ -267,7 +276,7 @@ for i in range(len(X)):
     tk.Checkbutton(
         page4, text=predictor, variable=selected_var, onvalue=1, offvalue=0
     ).grid(row=placement, column=10, sticky="w")
-    row = []
+    new_row: list = []
     type_of_predictor = tk.IntVar()
 
     type_of_predictor.set(0)
@@ -286,7 +295,7 @@ for i in range(len(X)):
         type_button.grid(row=placement, column=col_cor, sticky="w")
 
         col_cor += 150
-        row.append(type_button)
+        new_row.append(type_button)
 
     selected_var.trace("w", check_predictor_selection)
     X_type_buttons.append(row)
@@ -297,15 +306,15 @@ for i in range(len(X)):
 page4.mainloop()
 
 
-if next_page.get() == False:
+if next_page.get() is False:
     sys.exit()
 
 next_page.set(False)
 
 # return results
 df = pd.read_csv(csv_name)
-selected_predictors = []
-predictor_types = []
+selected_predictors: list = []
+predictor_types: list = []
 
 
 def var_list(df: pd.core.frame.DataFrame, name: str):
@@ -313,23 +322,13 @@ def var_list(df: pd.core.frame.DataFrame, name: str):
     return list(df[name])
 
 
-y_var = Variable(Y.get(), var_list(df, Y.get()))
-y_var.set_type(Y_type.get())
-
-y_var.set_x_or_y("y")
-
-
-X_vars = []
 for i in range(len(selected_X)):
     pred_var = selected_X[i]
     # check if the variable is selected
     # if selected add to the list
     if pred_var.get() == 1:
-        x_var = Variable(X[i], var_list(df, X[i]))
-        x_var.set_type(var_types[X_types[i].get()])
-        x_var.set_x_or_y("x")
-
-        X_vars.append(x_var)
+        variable_dict[X[i]].set_type(var_types[X_types[i].get()])
+        variable_dict[X[i]].set_x_or_y("x")
 
 
 visualizations = ["Scatter Plot", "Box Plot", "Correlation Matrix"]
@@ -347,7 +346,11 @@ for i in range(len(visualizations)):
     vis_vars.append(selected_vis)
     # selected_vis.set(1)
     tk.Checkbutton(
-        page5, text=vis_plot, variable=selected_vis, onvalue=True, offvalue=False
+        page5,
+        text=vis_plot,
+        variable=selected_vis,
+        onvalue=True,
+        offvalue=False,
     ).grid(row=placement, column=10, sticky="w")
 
     placement += 80
@@ -379,10 +382,9 @@ for i in range(len(vis_vars)):
 
 
 # run the analysis function from backend with these variables:
-# y_var (Class Variable)
-# x_vars (list[Class Variable])
+# variable_dict (dict[str, Class Variable])
 # selected_visualization (list[str])
 
 if __name__ == "__main__":
-    print(X_vars)
-    print(X_vars[0]._type)
+    dict_test = variable_dict
+    test = variable_dict["Hospitilization Days"]
