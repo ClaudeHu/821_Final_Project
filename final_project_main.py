@@ -21,6 +21,12 @@ import time
 from collections import defaultdict
 from csv import DictReader
 
+import math
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from plots import *
+
 
 # set the GUI box of the entry page (select the datafile)
 page1 = tk.Tk()
@@ -196,9 +202,9 @@ for i in range(len(var_types)):
     variable_type = var_types[i]
     select_var = tk.IntVar()
 
-    tk.Radiobutton(
-        page3, text=variable_type, variable=ytype_selection, value=i
-    ).grid(row=placement, column=10, sticky="w")
+    tk.Radiobutton(page3, text=variable_type, variable=ytype_selection, value=i).grid(
+        row=placement, column=10, sticky="w"
+    )
     placement += 10
 
 
@@ -388,3 +394,5 @@ for i in range(len(vis_vars)):
 if __name__ == "__main__":
     dict_test = variable_dict
     test = variable_dict["Hospitilization Days"]
+    scatter_plots(dict_test)
+    cor_mtx(dict_test)
