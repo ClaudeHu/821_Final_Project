@@ -18,9 +18,10 @@ from Variable_Class import Variable
 
 def scatter_plots(variable_dict: Dict):
     """Create scatter plots of outcome on continuous predictors."""
+    fig, axs = plt.subplots(math.ceil(len(variable_dict) / 3), 3)
 
+    num = 0
     for i in variable_dict:
-        num = 1
         if (
             variable_dict[i].get_x_or_y == "y"
             and variable_dict[i].get_type == "Continuous"
@@ -38,13 +39,13 @@ def scatter_plots(variable_dict: Dict):
             y_ = []
             x_ = [float(d) for d in x]
             y_ = [float(d) for d in y]
-            plt.subplot(math.ceil(len(variable_dict) / 2), 2, num)
             # print(x_)
             # print(y_)
 
-            plt.scatter(x_, y_, color="black")
-            plt.xlabel(f"{x_name}")
-            plt.ylabel(f"{y_name}")
+            axs[num // 3, num % 3].scatter(x_, y_, color="black")
+            # plt.scatter(x_, y_, color="black")
+            axs[num // 3, num % 3].set_xlabel(f"{x_name}")
+            axs[num // 3, num % 3].set_ylabel(f"{y_name}")
             num += 1
     plt.show()
 
