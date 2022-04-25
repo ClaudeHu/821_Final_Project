@@ -14,9 +14,9 @@ def scatter_plots(variable_dict: Dict, y_name: str, folder_name: str):
     """Create scatter plots of outcome on continuous predictors."""
     y = variable_dict[y_name].values
     for i in variable_dict:
-        if (
-            variable_dict[i].get_x_or_y == "x"
-            and variable_dict[i].get_type == "Continuous"
+        if variable_dict[i].get_x_or_y == "x" and (
+            variable_dict[i].get_type == "Continuous"
+            or variable_dict[i].get_type == "Discrete"
         ):
             x = variable_dict[i].values
             x_name = variable_dict[i].name
