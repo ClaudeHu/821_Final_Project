@@ -1,14 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Sat Apr 16 14:04:30 2022
 
-@author: claude
+@author: Claude Hu, Caitlyn Nguyen, Luenna Wu
 """
-# need to pass:
-# Filename
-
-# What is Categorical and What is
 
 import tkinter as tk
 from tkinter import filedialog
@@ -389,3 +383,5 @@ for plot in selected_visualization:
         scatter_plots(final_var_dict, Y_name, folder_name)
     elif plot == "Correlation Matrix":
         cor_mtx(final_var_dict, csv_name, folder_name)
+    elif plot == "Box Plot":
+        boxplots(final_var_dict, Y_name, csv_name, folder_name)

@@ -55,3 +55,20 @@ def cor_mtx(variable_dict: Dict, csv_name: str, folder_name: str):
     sns.heatmap(matrix, annot=True)
     plt.title("Correlation Matrix")
     plt.savefig(folder_name + "/correlation_matrix.png", dpi=300)
+
+
+def boxplots(
+    variable_dict: Dict, y_name: str, csv_name: str, folder_name: str
+):
+    """Create boxplots of outcome on categorical/binary predictors."""
+    df = pd.read_csv(csv_name, sep=",")
+    for i in variable_dict:
+        if variable_dict[i].get_x_or_y == "x" and (
+            variable_dict[i].get_type == "Categorical"
+            or variable_dict[i].get_type == "Binary"
+        ):
+            x_name = variable_dict[i].name
+            plt.clf()
+            sns.boxplot(x=f"{x_name}", y=f"{y_name}", data=df)
+            plt.title(f"{y_name} by {x_name}")
+            plt.savefig(folder_name + f"/{x_name}_boxplot.png", dpi=300)
