@@ -11,5 +11,5 @@ def test_variable():
     assert var_test.values == [1, 2]
     var_test.set_x_or_y("x")
     assert var_test.get_x_or_y == "x"
-    var_test.set_type("continuous")
-    assert var_test.get_type == "continuous"
+    var_test.set_type("Continuous")
+    assert var_test.get_type == "Continuous"
