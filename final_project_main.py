@@ -6,20 +6,12 @@ Created on Sat Apr 16 14:04:30 2022
 
 import tkinter as tk
 from tkinter import filedialog
-import pprint
-import csv
 import sys
 from Variable_Class import Variable
-import pandas as pd
 import time
 from collections import defaultdict
 from csv import DictReader
 import os
-
-import math
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 from plots import *
 
 # set the GUI box of the entry page (select the datafile)
@@ -326,7 +318,12 @@ for i in range(len(selected_X)):
 keep.append(Y_name)
 final_var_dict = {k: variable_dict[k] for k in keep}
 
-visualizations = ["Scatter Plot", "Box Plot", "Correlation Matrix"]
+visualizations = [
+    "Scatter Plot",
+    "Box Plot",
+    "Correlation Matrix",
+    "Histogram",
+]
 page5 = tk.Tk()
 page5.geometry("800x300")
 page5.title("Select the Visualization")
@@ -385,3 +382,5 @@ for plot in selected_visualization:
         cor_mtx(final_var_dict, csv_name, folder_name)
     elif plot == "Box Plot":
         boxplots(final_var_dict, Y_name, csv_name, folder_name)
+    elif plot == "Histogram":
+        hist_plot(final_var_dict, folder_name)
