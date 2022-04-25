@@ -9,7 +9,7 @@ def test_variable():
     var_test = Variable("Age", [1, 2])
     assert var_test.name == "Age"
     assert var_test.values == [1, 2]
-    var_test._x_or_y = "x"
-    assert var_test.x_or_y == "x"
-    var_test._type = "continuous"
-    assert var_test.type == "continuous"
+    var_test.set_x_or_y("x")
+    assert var_test.get_x_or_y == "x"
+    var_test.set_type("Continuous")
+    assert var_test.get_type == "Continuous"
