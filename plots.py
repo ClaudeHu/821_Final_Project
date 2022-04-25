@@ -10,25 +10,10 @@ from typing import Dict
 from Variable_Class import Variable
 
 
-# Dictionary
-# key: variable name (str)
-# value:
-# for categorical/continuous variables
-
-
-def scatter_plots(variable_dict: Dict):
+def scatter_plots(variable_dict: Dict, y_name: str, folder_name: str):
     """Create scatter plots of outcome on continuous predictors."""
-    fig, axs = plt.subplots(math.ceil(len(variable_dict) / 3), 3)
-
-    num = 0
+    y = variable_dict[y_name].values
     for i in variable_dict:
-        if (
-            variable_dict[i].get_x_or_y == "y"
-            and variable_dict[i].get_type == "Continuous"
-        ):
-            y = variable_dict[i].values
-            y_name = variable_dict[i].name
-
         if (
             variable_dict[i].get_x_or_y == "x"
             and variable_dict[i].get_type == "Continuous"
@@ -39,25 +24,20 @@ def scatter_plots(variable_dict: Dict):
             y_ = []
             x_ = [float(d) for d in x]
             y_ = [float(d) for d in y]
-            # print(x_)
-            # print(y_)
 
-            axs[num // 3, num % 3].scatter(x_, y_, color="black")
-            # plt.scatter(x_, y_, color="black")
-            axs[num // 3, num % 3].set_xlabel(f"{x_name}")
-            axs[num // 3, num % 3].set_ylabel(f"{y_name}")
-            num += 1
-    plt.show()
+            plt.scatter(x_, y_, color="black")
+            plt.title(f"{y_name} vs {x_name}")
+            plt.xlabel(f"{x_name}")
+            plt.ylabel(f"{y_name}")
+            plt.savefig(folder_name + f"/{x_name}_scatter.png", dpi=300)
 
 
-def cor_mtx(variable_dict: Dict):
-    """Plot correlation matrix or continuous predictors."""
-    df = pd.read_csv("test_data.csv", sep=",")
-    # var_list = df.columns.values.tolist()
+def cor_mtx(variable_dict: Dict, csv_name: str, folder_name: str):
+    """Plot correlation matrix of continuous predictors."""
+    df = pd.read_csv(csv_name, sep=",")
 
     var_for_plot = []
     df_for_plot = df
-    # print(variable_dict)
     for i in variable_dict:
         if not (
             variable_dict[i].get_x_or_y == "x"
@@ -71,8 +51,7 @@ def cor_mtx(variable_dict: Dict):
         method="pearson",  # might need to test normality for this method
         min_periods=1,  # minimum number of observations required
     ).round(2)
-    # print(matrix)
 
     sns.heatmap(matrix, annot=True)
     plt.title("Correlation Matrix")
-    plt.show()
+    plt.savefig(folder_name + "/correlation_matrix.png", dpi=300)

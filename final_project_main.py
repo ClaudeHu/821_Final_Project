@@ -20,13 +20,13 @@ import pandas as pd
 import time
 from collections import defaultdict
 from csv import DictReader
+import os
 
 import math
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from plots import *
-
 
 # set the GUI box of the entry page (select the datafile)
 page1 = tk.Tk()
@@ -202,9 +202,9 @@ for i in range(len(var_types)):
     variable_type = var_types[i]
     select_var = tk.IntVar()
 
-    tk.Radiobutton(page3, text=variable_type, variable=ytype_selection, value=i).grid(
-        row=placement, column=10, sticky="w"
-    )
+    tk.Radiobutton(
+        page3, text=variable_type, variable=ytype_selection, value=i
+    ).grid(row=placement, column=10, sticky="w")
     placement += 10
 
 
@@ -222,6 +222,7 @@ variable_dict[data_columns[y_selection.get()]].set_type(
     var_types[ytype_selection.get()]
 )
 
+Y_name = data_columns[y_selection.get()]
 
 # the predictors
 X = data_columns
@@ -317,25 +318,19 @@ if next_page.get() is False:
 
 next_page.set(False)
 
-# return results
-df = pd.read_csv(csv_name)
-selected_predictors: list = []
-predictor_types: list = []
-
-
-def var_list(df: pd.core.frame.DataFrame, name: str):
-    """Variable list."""
-    return list(df[name])
-
+keep = []
 
 for i in range(len(selected_X)):
     pred_var = selected_X[i]
     # check if the variable is selected
     # if selected add to the list
     if pred_var.get() == 1:
+        keep.append(X[i])
         variable_dict[X[i]].set_type(var_types[X_types[i].get()])
         variable_dict[X[i]].set_x_or_y("x")
 
+keep.append(Y_name)
+final_var_dict = {k: variable_dict[k] for k in keep}
 
 visualizations = ["Scatter Plot", "Box Plot", "Correlation Matrix"]
 page5 = tk.Tk()
@@ -386,13 +381,11 @@ for i in range(len(vis_vars)):
     if vis_vars[i].get() is True:
         selected_visualization.append(visualizations[i])
 
+folder_name = "EDA_" + time.strftime("%Y_%m_%d_%H_%M_%S")
+os.mkdir(folder_name)
 
-# run the analysis function from backend with these variables:
-# variable_dict (dict[str, Class Variable])
-# selected_visualization (list[str])
-
-if __name__ == "__main__":
-    dict_test = variable_dict
-    test = variable_dict["Hospitilization Days"]
-    scatter_plots(dict_test)
-    cor_mtx(dict_test)
+for plot in selected_visualization:
+    if plot == "Scatter Plot":
+        scatter_plots(final_var_dict, Y_name, folder_name)
+    elif plot == "Correlation Matrix":
+        cor_mtx(final_var_dict, csv_name, folder_name)
