@@ -216,6 +216,7 @@ variable_dict[data_columns[y_selection.get()]].set_type(
     var_types[ytype_selection.get()]
 )
 
+y_name = data_columns[y_selection.get()]
 
 # the predictors
 X = data_columns
@@ -311,25 +312,19 @@ if next_page.get() is False:
 
 next_page.set(False)
 
-# return results
-df = pd.read_csv(csv_name)
-selected_predictors: list = []
-predictor_types: list = []
-
-
-def var_list(df: pd.core.frame.DataFrame, name: str):
-    """Variable list."""
-    return list(df[name])
-
+keep = []
 
 for i in range(len(selected_X)):
     pred_var = selected_X[i]
     # check if the variable is selected
     # if selected add to the list
     if pred_var.get() == 1:
+        keep.append(X[i])
         variable_dict[X[i]].set_type(var_types[X_types[i].get()])
         variable_dict[X[i]].set_x_or_y("x")
 
+keep.append(y_name)
+final_var_dict = {k: variable_dict[k] for k in keep}
 
 visualizations = ["Scatter Plot", "Box Plot", "Correlation Matrix"]
 page5 = tk.Tk()
@@ -386,5 +381,5 @@ for i in range(len(vis_vars)):
 # selected_visualization (list[str])
 
 if __name__ == "__main__":
-    dict_test = variable_dict
-    test = variable_dict["Hospitilization Days"]
+    dict_test = final_var_dict
+    test = final_var_dict["Hospitilization Days"]
