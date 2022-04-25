@@ -12,12 +12,12 @@ class Variable:
     @property
     def get_type(self):
         """Variable type."""
-        return self._type
+        return self._var_type
 
     # @type.setter
     def set_type(self, var_type: str):
         """Setter for variable type."""
-        self._type = var_type
+        self._var_type = var_type
 
     @property
     def get_x_or_y(self):
