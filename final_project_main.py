@@ -1,7 +1,9 @@
-"""
-Created on Sat Apr 16 14:04:30 2022
+"""Exploratory Data Analysis (EDA) Tool.
 
-@author: Claude Hu, Caitlyn Nguyen, Luenna Wu
+BIOSTAT821
+Spring 2022
+
+Authors: Claude Hu, Caitlyn Nguyen, Luenna Wu
 """
 
 import tkinter as tk
@@ -329,14 +331,13 @@ page5.geometry("800x300")
 page5.title("Select the Visualization")
 
 
-vis_vars = []  # store the variables
+vis_vars = []
 for i in range(len(visualizations)):
     vis_plot = visualizations[i]
 
     selected_vis = tk.BooleanVar()
     selected_vis.set(True)
     vis_vars.append(selected_vis)
-    # selected_vis.set(1)
     tk.Checkbutton(
         page5,
         text=vis_plot,
