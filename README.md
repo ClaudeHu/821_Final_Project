@@ -119,11 +119,11 @@ An example output of each plot type is given below.
 
 ### Pairplot
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214345-2ce4cdcc-739a-4b27-b879-4a982a772a68.png" width = "700" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214345-2ce4cdcc-739a-4b27-b879-4a982a772a68.png" width = "550" height = "500">
 
 ### Scatterplot
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214374-6c723b3e-4275-48fc-a992-00663c21391f.png" width = "700" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214374-6c723b3e-4275-48fc-a992-00663c21391f.png" width = "550" height = "500">
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
