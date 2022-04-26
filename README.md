@@ -101,7 +101,7 @@ python final_project_main.py
 
 <img src = "https://user-images.githubusercontent.com/63687625/165213285-773c9cef-3d20-4c8b-b7d7-d6444c3cd45a.PNG">
 
-10. A new folder starting named `EDA_[year]_[month]_[day]_[hour]_[minute]_[second]` will be created in your local directory. All plot figures are outputted into this folder as `.png` files.
+10. A new folder named `EDA_[year]_[month]_[day]_[hour]_[minute]_[second]` will be created in your local directory. All plot figures are outputted into this folder as `.png` files.
 
 <img src = "https://user-images.githubusercontent.com/63687625/165213746-0d388399-ab92-4e1d-b58a-b22158dfcb35.PNG">
 
