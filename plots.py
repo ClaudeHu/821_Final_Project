@@ -1,4 +1,4 @@
-"""Create scatter plots and correlation matrix."""
+"""Create desired plots."""
 
 import pandas as pd
 import matplotlib.pyplot as plt
