@@ -69,7 +69,10 @@ The method `set_x_or_y(self, x_or_y_type: str)` is used to set whether the varia
 The `.csv` file should be saved in your local drive in a location which can be easily accessed again.
 
 1. Set the folder with all of your scripts as the working directory within VScode.
-2. In the cmd terminal, write `python final_project_main.py`
+2. In the cmd terminal, write:
+``` python
+python final_project_main.py
+```
 3. A GUI window will show up instructing with a button to "Select Input Table". Click the "Select Input Table" button.
 
 <img src = "https://user-images.githubusercontent.com/63687625/165211352-64fc2319-4602-4027-92a6-61d1c0b14ecd.PNG">
@@ -127,3 +130,17 @@ An example output of each plot type is given below.
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
+
+To test the `Variable_Class.py` module, run the `test_Variable_Class.py` module by typing in the console:
+
+``` python
+pytest test_Variable_Class.py
+```
+
+A 100% passed test result should appear similar to:
+
+``` python
+test_Variable_Class.py ....                                                                    [100%]
+
+======================================== 1 passed in 0.12s ========================================
+```
