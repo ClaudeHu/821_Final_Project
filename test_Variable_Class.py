@@ -13,3 +13,10 @@ def test_variable():
     assert var_test.get_x_or_y == "x"
     var_test.set_type("Continuous")
     assert var_test.get_type == "Continuous"
+    with pytest.raises(ValueError):
+        var_test.set_x_or_y("X")
+        var_test.set_x_or_y("Y")
+        var_test.set_x_or_y("aaaaa")
+        var_test.set_type("continuous")
+        var_test.set_type("discrete")
+        var_test.set_type("wronginput")

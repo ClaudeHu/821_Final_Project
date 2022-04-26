@@ -23,7 +23,32 @@ A graphical user interface (GUI) will be coded in python. This GUI will instruct
 
 Once the user submits their selection, the GUI will output the graphical displays and statistics.
 
-## GUI Tutorial
+## Setup and Installation
+To install Python and all necessary packages listed in `Requirements.txt`, please refer to [Python Packaging Installation Instructions](https://packaging.python.org/en/latest/tutorials/installing-packages/).
+
+To install Git, please refer to [Git Guides](https://github.com/git-guides/install-git).
+
+To install Pytest, please refer to [Pytest Documentation](https://docs.pytest.org/en/6.2.x/getting-started.html).
+
+## Class Description
+
+### Variable Class
+
+The Variable class is initialized as: `Variable(name: str, values: list)`.
+
+Each instance of the Variable class stores attributes for a single variable listed as a column in the uploaded dataset.
+
+The Variable class has the following instance attributes:
+* name
+* values
+
+The Variable class has the following properties:
+* get_type
+* get_x_or_y
+
+The method `set_type(self, var_type: str)` is used to set the variable type for the variable. The variable type can be set as "Binary", "Categorical", "Discrete", or "Continuous". A ValueError is raised if the inputted `var_type` is not one of the four types previously listed. Calling upon `get_type` will return the variable type as a str set from `set_type`.
+
+The method `set_x_or_y(self, x_or_y_type: str)` is used to set whether the variable is a x or y variable. The variable type can be set as "x" or "y". A ValueError is raised if the inputted `x_or_y_type` is not "x" or "y". Calling upon `get_x_or_y` will return if the variable is "x" or "y" as a str set from `set_x_or_y`.
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
