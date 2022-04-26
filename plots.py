@@ -71,7 +71,6 @@ def hist_plot(
             new_df = variables_df[var_name]
             plt.clf()
             sns.displot(new_df, kde=True)
-            plt.title(f"{var_name} Histogram")
             plt.xlabel(f"{var_name}")
             plt.ylabel("Frequency")
             plt.savefig(folder_name + f"/{var_name}_histogram.png", dpi=300)
