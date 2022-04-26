@@ -107,23 +107,23 @@ An example output of each plot type is given below.
 
 ### Boxplot
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214263-9ed1250f-c62a-45db-9e91-cd29d33e5fda.png" width = "500" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214263-9ed1250f-c62a-45db-9e91-cd29d33e5fda.png" width = "500" height = "700">
 
 ### Correlation Matrix
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214141-f89eb969-fae7-4cb0-aa48-4644e4c889ba.png" width = "500" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214141-f89eb969-fae7-4cb0-aa48-4644e4c889ba.png" width = "500" height = "700">
 
 ### Histogram
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214718-ad6db76f-4da6-4e38-946a-6f40e828cac4.png" width = "500" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214718-ad6db76f-4da6-4e38-946a-6f40e828cac4.png" width = "500" height = "700">
 
 ### Pairplot
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214345-2ce4cdcc-739a-4b27-b879-4a982a772a68.png" width = "500" height = "500">
+<img src = "https://user-images.githubusercontent.com/63687625/165214345-2ce4cdcc-739a-4b27-b879-4a982a772a68.png" width = "500" height = "700">
 
 ### Scatterplot
 
-<img src = "https://user-images.githubusercontent.com/63687625/165214374-6c723b3e-4275-48fc-a992-00663c21391f.png">
+<img src = "https://user-images.githubusercontent.com/63687625/165214374-6c723b3e-4275-48fc-a992-00663c21391f.png" width = "500" height = "700">
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
