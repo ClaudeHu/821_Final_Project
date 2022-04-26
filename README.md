@@ -24,11 +24,25 @@ A graphical user interface (GUI) will be coded in python. This GUI will instruct
 Once the user submits their selection, the GUI will output the graphical displays and statistics.
 
 ## Setup and Installation
+### Python Setup
 To install Python and all necessary packages listed in `Requirements.txt`, please refer to [Python Packaging Installation Instructions](https://packaging.python.org/en/latest/tutorials/installing-packages/).
 
 To install Git, please refer to [Git Guides](https://github.com/git-guides/install-git).
 
 To install Pytest, please refer to [Pytest Documentation](https://docs.pytest.org/en/6.2.x/getting-started.html).
+
+### Data Setup
+Data should be recorded in a `.csv` file with columns being each variable. The accepted variable types are: <br>
+* Binary
+* Categorical
+* Discrete
+* Continuous
+
+### Scripts Setup
+The following `.py` scripts should be downloaded and saved in the same folder within your local drive:
+* `Variable_Class.py`
+* `final_project_main.py`
+* `plots.py`
 
 ## Class Description
 
@@ -49,6 +63,20 @@ The Variable class has the following properties:
 The method `set_type(self, var_type: str)` is used to set the variable type for the variable. The variable type can be set as "Binary", "Categorical", "Discrete", or "Continuous". A ValueError is raised if the inputted `var_type` is not one of the four types previously listed. Calling upon `get_type` will return the variable type as a str set from `set_type`.
 
 The method `set_x_or_y(self, x_or_y_type: str)` is used to set whether the variable is a x or y variable. The variable type can be set as "x" or "y". A ValueError is raised if the inputted `x_or_y_type` is not "x" or "y". Calling upon `get_x_or_y` will return if the variable is "x" or "y" as a str set from `set_x_or_y`.
+
+## Instructions
+
+The `.csv` file should be saved in your local drive in a location which can be easily accessed again.
+
+1. Set the folder with all of your scripts as the working directory within VScode.
+2. In the cmd terminal, write `python final_project_main.py`
+3. A GUI window will show up instructing with a button to "Select Input Table". Click the "Select Input Table" button.
+
+<img src = "https://user-images.githubusercontent.com/63687625/165211352-64fc2319-4602-4027-92a6-61d1c0b14ecd.PNG">
+
+4. The file directory will pop up. Find and select your `.csv` file, then click "Open".
+5. 
+
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
