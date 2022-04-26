@@ -1,0 +1,10 @@
+tkinter
+sys
+time
+collections
+csv
+os
+pandas
+matplotlib
+seaborn
+pytest
