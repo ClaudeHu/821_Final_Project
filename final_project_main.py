@@ -325,6 +325,7 @@ visualizations = [
     "Box Plot",
     "Correlation Matrix",
     "Histogram",
+    "Pairplot",
 ]
 page5 = tk.Tk()
 page5.geometry("800x300")
@@ -373,15 +374,19 @@ for i in range(len(vis_vars)):
     if vis_vars[i].get() is True:
         selected_visualization.append(visualizations[i])
 
+variables_df = pd.read_csv(csv_name, sep=",")
+
 folder_name = "EDA_" + time.strftime("%Y_%m_%d_%H_%M_%S")
 os.mkdir(folder_name)
 
 for plot in selected_visualization:
     if plot == "Scatter Plot":
-        scatter_plots(final_var_dict, Y_name, folder_name)
+        scatter_plots(final_var_dict, Y_name, folder_name, variables_df)
     elif plot == "Correlation Matrix":
-        cor_mtx(final_var_dict, csv_name, folder_name)
+        cor_mtx(folder_name, variables_df)
     elif plot == "Box Plot":
-        boxplots(final_var_dict, Y_name, csv_name, folder_name)
+        boxplots(final_var_dict, Y_name, folder_name, variables_df)
     elif plot == "Histogram":
-        hist_plot(final_var_dict, folder_name)
+        hist_plot(final_var_dict, folder_name, variables_df)
+    elif plot == "Pairplot":
+        pair_plot(final_var_dict, folder_name, variables_df)
