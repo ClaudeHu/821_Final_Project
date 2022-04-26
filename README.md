@@ -102,6 +102,29 @@ The `.csv` file should be saved in your local drive in a location which can be e
 
 <img src = "https://user-images.githubusercontent.com/63687625/165213746-0d388399-ab92-4e1d-b58a-b22158dfcb35.PNG">
 
+## Example Outputs
+Example output of each plot type is given below.
+
+### Boxplot
+
+<img src = "https://user-images.githubusercontent.com/63687625/165214263-9ed1250f-c62a-45db-9e91-cd29d33e5fda.png">
+
+### Correlation Matrix
+
+<img src = "https://user-images.githubusercontent.com/63687625/165214141-f89eb969-fae7-4cb0-aa48-4644e4c889ba.png">
+
+### Histogram
+
+<img src = "https://user-images.githubusercontent.com/63687625/165214311-8ff3a26a-70d8-4199-aa32-5c161ed5dc5b.png">
+
+### Pairplot
+
+<img src = "https://user-images.githubusercontent.com/63687625/165214345-2ce4cdcc-739a-4b27-b879-4a982a772a68.png">
+
+### Scatterplot
+
+<img src = "https://user-images.githubusercontent.com/63687625/165214374-6c723b3e-4275-48fc-a992-00663c21391f.png">
+
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
 
