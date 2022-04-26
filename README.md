@@ -127,6 +127,3 @@ An example output of each plot type is given below.
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
-
-
-
