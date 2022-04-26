@@ -2,13 +2,11 @@
 
 Team members: Claude Hu, Caitlyn Nguyen, Luenna Wu
 
+## Overview
+This tool can be used to produce graphical displays without any necessary end-user coding. It provides a quick preliminary analysis for researchers or scientists to understand their results. 
+
 ## Description
-
-This tool can be used to produce basic statistics and graphical displays without any necessary end-user coding. It provides a quick preliminary analysis for researchers or scientists to understand their results.
-
-## Project Plan
-
-A graphical user interface (GUI) will be coded in python. This GUI will instruct the user to upload a `.csv` file containing a dataset with an outcome (y) and predictor(s) (x). The back-end code will then read in the data. The next screen of the GUI will then instruct the user of which variable is the outcome and which are the predictors. Later, the user will select the types of data (binary, categorical, discrete, or continuous) for each outcome and predictor. The GUI will also have different options for the tool to generate which the user can select through square checkboxes, including:
+A graphical user interface (GUI) was coded in python. This GUI instructs the user to upload a `.csv` file containing a dataset with an outcome (y) and predictor(s) (x). The back-end code then read in the data. The next screen of the GUI then instructs the user of which variable is the outcome and which are the predictors. Next, the user selects the types of data (binary, categorical, discrete, or continuous) for each outcome and predictor. The GUI will then have different options for the tool to generate which the user can select through square checkboxes, including:
 
 * Boxplots:<br>
   Shows the five-number summary of sets of data. It is helpful for comparing distributions across groups and reveal any potential outliers.
@@ -21,7 +19,7 @@ A graphical user interface (GUI) will be coded in python. This GUI will instruct
 * Pairplots:<br>
   Plots pairwise relationships of continuous variables in the dataset. A grid of axes is created with each numeric variable as the y-axes of a single row and the x-axes across a single column.
 
-Once the user submits their selection, the GUI will output the graphical displays and statistics.
+Once the user submits their selection, a new folder will be created within the local directory. Graphical displays will be outputted as `.png` files in the folder.
 
 ## Setup and Installation
 ### Python Setup
@@ -32,7 +30,9 @@ To install Git, please refer to [Git Guides](https://github.com/git-guides/insta
 To install Pytest, please refer to [Pytest Documentation](https://docs.pytest.org/en/6.2.x/getting-started.html).
 
 ### Data Setup
-Data should be recorded in a `.csv` file with columns being each variable. The accepted variable types are: <br>
+Data should be recorded in a `.csv` file with columns being each variable. Each column should have a header/variable name, in the first row.
+
+The accepted variable types are: <br>
 * Binary
 * Categorical
 * Discrete
@@ -75,8 +75,32 @@ The `.csv` file should be saved in your local drive in a location which can be e
 <img src = "https://user-images.githubusercontent.com/63687625/165211352-64fc2319-4602-4027-92a6-61d1c0b14ecd.PNG">
 
 4. The file directory will pop up. Find and select your `.csv` file, then click "Open".
-5. 
 
+<img src = "https://user-images.githubusercontent.com/63687625/165211877-45dd3694-9558-449c-89c1-d38b9038ccd0.PNG">
+
+5. The file path should now populate within the GUI. Click on "Next".
+
+<img src = "https://user-images.githubusercontent.com/63687625/165212073-821a8888-aa57-4a6a-8b63-5cd3357e5a0b.PNG">
+
+6. A list of all of the variable names will appear. Select your outcome variable and click on "Next".
+
+<img src = "https://user-images.githubusercontent.com/63687625/165212191-c15857a5-800b-4d7e-858f-e21677ceae44.PNG">
+
+7. Select the type of variable for the outcome from the list of variable types and click on "Next".
+
+<img src = "https://user-images.githubusercontent.com/63687625/165212558-c1682670-1d7d-416d-a7fc-5d648d45e8f7.PNG">
+
+8. Select which predictors you would like to include and the variable type for each predictor. Click on "Next" when done.
+
+<img src = "https://user-images.githubusercontent.com/63687625/165213485-80e00b68-2009-4053-887f-97c82bfcefaa.PNG">
+
+9. Select the visualizations you would like to be produced. Click on "Run" to run the generation of plots.
+
+<img src = "https://user-images.githubusercontent.com/63687625/165213285-773c9cef-3d20-4c8b-b7d7-d6444c3cd45a.PNG">
+
+10. A new folder starting named `EDA_[year]_[month]_[day]_[hour]_[minute]_[second]` will be created in your local directory. All plot figures are outputted into this folder as `.png` files.
+
+<img src = "https://user-images.githubusercontent.com/63687625/165213746-0d388399-ab92-4e1d-b58a-b22158dfcb35.PNG">
 
 ## Testing
 Test modules are placed in the `test_Variable_Class.py`. Importation of pytest is required for testing. The files `test_data.csv` and `test_data_2.csv` are included to be used for testing.
